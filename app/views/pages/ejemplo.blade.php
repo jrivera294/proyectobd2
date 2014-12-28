@@ -14,7 +14,6 @@
                 <div class="col-md-1"></div>
                 <div class="col-md-10">
                     <p>Contenido...</p>
-                    {{ $variable->nombre }}
                 </div>
                 <div class="col-md-1"></div>
             </div>
