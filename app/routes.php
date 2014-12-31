@@ -15,3 +15,8 @@ Route::get('/', function()
 {
 	return View::make('pages/ejemplo');
 });
+
+/* Autenticacion */
+Route::get('/login', array('uses'=>'AuthController@login','as' => 'login'));
+Route::post('/loginPost', array('uses'=>'AuthController@loginPost','as' => 'loginPost'));
+Route::get('/register', array('uses'=>'AuthController@register','as' => 'register'));
