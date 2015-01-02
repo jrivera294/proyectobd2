@@ -14,7 +14,14 @@ class AuthController extends BaseController {
 
         if(Auth::attempt(array('email' => $email, 'password' => $password), Input::get('rememberme', 0)))
         {
-            return Redirect::to('ejemplo');
+            if(Auth::user()->role == 2){
+                return Redirect::to('profesorHome');
+            }else if(Auth::user()->role == 3){
+                return Redirect::to('directorHome');
+            }else{
+                App::abort(403,'Su cuenta de usuario no está autorizada para acceder a este sitio.');
+            }
+
         }else{
             return Redirect::to('/login')
                 ->with('tipo_error', 'danger')
@@ -54,6 +61,14 @@ class AuthController extends BaseController {
                 ->withErrors($user->errors)
                 ->with('error_flag',true);
         }
+    }
+
+    public function logOut()
+    {
+        Auth::logout();
+        return Redirect::to('login')
+                    ->with('mensaje_error', 'Tu sesión ha sido cerrada correctamente.')
+                    ->with('tipo_error', 'success');
     }
 
 }

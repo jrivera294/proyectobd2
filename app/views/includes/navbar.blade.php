@@ -8,7 +8,12 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Asistencias3000</a>
+            @if(Auth::user()->role==2)
+            <a class="navbar-brand" href="{{URL::to('/profesorHome')}}">Asistencias3000</a>
+            @elseif(Auth::user()->role==3)
+            <a class="navbar-brand" href="{{URL::to('/directorHome')}}">Asistencias3000</a>
+            @endif
+
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -17,7 +22,8 @@
               <li><a href="#">Pag 2</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="../navbar-fixed-top/">Desconectar</a></li>
+              <p class="navbar-text" >Bienvenido {{Auth::user()->nombre}} {{Auth::user()->apellido}}</p>
+              <li><a href="{{URL::to('/logout')}}">Desconectar</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->

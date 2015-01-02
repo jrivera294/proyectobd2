@@ -25,11 +25,17 @@ Route::post('/storeRegister', array('uses'=>'AuthController@storeRegister','as' 
 /* Páginas autorizadas para usuarios con rol Profesor */
 Route::group(array('before' => 'auth|roleProfesor'), function()
 {
-
+    Route::get('/profesorHome', array('uses'=>'ProfesorController@index','as' => 'profesorHome'));
 });
 
 /* Páginas autorizadas para usuarios con rol Director */
 Route::group(array('before' => 'auth|roleDirector'), function()
 {
+    Route::get('/directorHome', array('uses'=>'DirectorController@index','as' => 'directorHome'));
+});
 
+/* Páginas autorizadas para cuadlquier usuario */
+Route::group(array('before' => 'auth'), function()
+{
+    Route::get('/logout', array('uses'=>'AuthController@logOut','as' => 'logout'));
 });
