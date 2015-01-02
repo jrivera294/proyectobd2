@@ -15,9 +15,9 @@ class AuthController extends BaseController {
         if(Auth::attempt(array('email' => $email, 'password' => $password), Input::get('rememberme', 0)))
         {
             if(Auth::user()->role == 2){
-                return Redirect::to('profesorHome');
+                return Redirect::to('profesor/profesorHome');
             }else if(Auth::user()->role == 3){
-                return Redirect::to('directorHome');
+                return Redirect::to('director/directorHome');
             }else{
                 App::abort(403,'Su cuenta de usuario no está autorizada para acceder a este sitio.');
             }

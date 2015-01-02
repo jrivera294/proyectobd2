@@ -1,3 +1,4 @@
+<?php $path = Request::path(); ?>
       <!-- Static navbar -->
       <nav class="navbar navbar-default">
         <div class="container-fluid">
@@ -17,9 +18,32 @@
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="#">Inicio</a></li>
-              <li><a href="#">Pag 1</a></li>
-              <li><a href="#">Pag 2</a></li>
+                @if(Auth::user()->role==2)
+                <li class="{{$path === 'profesor/profesorHome' ? 'active' : '';}}">
+                    <a href="{{URL::to('profesor/profesorHome')}}">Inicio</a>
+                </li>
+                <li class="{{$path === 'profesor/materias' ? 'active' : '';}}">
+                    <a href="{{URL::to('profesor/profesorHome')}}">Materias</a>
+                </li>
+                <li class="{{$path === 'profesor/asistencias' ? 'active' : '';}}">
+                    <a href="{{URL::to('profesor/profesorHome')}}">Asistencias</a>
+                </li>
+                @elseif(Auth::user()->role==3)
+                <li class="{{$path === 'director/directorHome' ? 'active' : '';}}">
+                    <a href="{{URL::to('director/directorHome')}}">Inicio</a>
+                </li>
+                </li>
+                <li class="{{$path === 'profesor/materias' ? 'active' : '';}}">
+                    <a href="{{URL::to('profesor/profesorHome')}}">Materias</a>
+                </li>
+                <li class="{{$path === 'director/asistencias' ? 'active' : '';}}">
+                    <a href="{{URL::to('director/directorHome')}}">Asistencias</a>
+                </li>
+                </li>
+                <li class="{{$path === 'director/alertas' ? 'active' : '';}}">
+                    <a href="{{URL::to('director/profesorHome')}}">Alertas</a>
+                </li>
+                @endif
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <p class="navbar-text" >Bienvenido {{Auth::user()->nombre}} {{Auth::user()->apellido}}</p>
