@@ -7,8 +7,8 @@
                 {{ Form::open(array('route' => 'loginPost', 'method' => 'POST', 'id' => 'laravel_form'), array('role' => 'form')) }}
                     <h2 class="form-signin-heading">Ingrese sus datos de inicio de sesión</h2>
 
-                    {{ Form::label('username', 'Email:') }}
-                    {{ Form::text('username', null, array('placeholder' => '', 'class' => 'form-control')) }}
+                    {{ Form::label('email', 'Email:') }}
+                    {{ Form::text('email', null, array('placeholder' => '', 'class' => 'form-control')) }}
 <br>
                     {{ Form::label('password', 'Contraseña:') }}
                     {{ Form::password('password', array('class' => 'form-control')) }}

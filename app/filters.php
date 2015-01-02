@@ -88,3 +88,15 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+Route::filter('roleProfesor',function(){
+    if(Auth::user()->role !== 2){
+        App::abort(403,'Su cuenta de usuario no está autorizada para acceder a este sitio.');
+    }
+});
+
+Route::filter('roleDirector',function(){
+    if(Auth::user()->role !== 3){
+        App::abort(403,'Su cuenta de usuario no está autorizada para acceder a este sitio.');
+    }
+});

@@ -9,14 +9,18 @@
 
     @include('includes.navbar')
 
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
-        @include('includes.errores')
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            @include('includes.errores')
+        </div>
+        <div class="col-md-2"></div>
     </div>
-    <div class="col-md-2"></div>
 
 
-    @yield('content')
+    <div class="row">
+        @yield('content')
+    </div>
 
     <!-- Javascript includes -->
     @include('includes.js')

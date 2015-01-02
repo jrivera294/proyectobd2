@@ -20,3 +20,16 @@ Route::get('/', function()
 Route::get('/login', array('uses'=>'AuthController@login','as' => 'login'));
 Route::post('/loginPost', array('uses'=>'AuthController@loginPost','as' => 'loginPost'));
 Route::get('/register', array('uses'=>'AuthController@register','as' => 'register'));
+Route::post('/storeRegister', array('uses'=>'AuthController@storeRegister','as' => 'storeRegister'));
+
+/* Páginas autorizadas para usuarios con rol Profesor */
+Route::group(array('before' => 'auth|roleProfesor'), function()
+{
+
+});
+
+/* Páginas autorizadas para usuarios con rol Director */
+Route::group(array('before' => 'auth|roleDirector'), function()
+{
+
+});

@@ -7,14 +7,18 @@
 
 <body>
 
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
-        @include('includes.errores')
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            @include('includes.errores')
+        </div>
+        <div class="col-md-2"></div>
     </div>
-    <div class="col-md-2"></div>
 
+    <div class="row">
+        @yield('content')
+    </div>
 
-    @yield('content')
 
     <!-- Javascript includes -->
     @include('includes.js')

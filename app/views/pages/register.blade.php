@@ -5,7 +5,7 @@
 <div class="col-md-2"></div>
             <div class="col-md-8">
                 <h2>Formulario de registro:</h2><hr>
-                {{ Form::open(array('route' => 'register', 'method' => 'POST', 'id' => 'laravel_form'), array('role' => 'form')) }}
+                {{ Form::open(array('route' => 'storeRegister', 'method' => 'POST', 'id' => 'laravel_form'), array('role' => 'form')) }}
                     <div class="row">
                         <div class="form-group col-md-6">
                             {{ Form::label('nombre', 'Nombre:') }}
@@ -19,8 +19,8 @@
 
                     <div class="row">
                         <div class="form-group col-md-6">
-                            {{ Form::label('ci', 'Cédula:') }}
-                            {{ Form::text('ci', null, array('placeholder' => 'Ejemplo: V-12345678', 'class' => 'form-control')) }}
+                            {{ Form::label('cedula', 'Cédula:') }}
+                            {{ Form::text('cedula', null, array('placeholder' => 'Ejemplo: V-12345678', 'class' => 'form-control')) }}
                         </div>
                         <div class="col-md-6">
                             {{ Form::label('sexo', 'Sexo:') }}
