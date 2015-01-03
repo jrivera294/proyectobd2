@@ -25,7 +25,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     protected $fillable = array('email','password','cedula','sexo','nombre','apellido','direccion','telefono','fecha_nac');
     protected $guarded = array('id');
     public $errors;
-
+    /* PENDIENTE */
+     public function Seccion()
+    {
+        return $this->belongsToMany('seccion');
+    }
+    /********/
     public function isValid($data)
     {
         $rules = array(

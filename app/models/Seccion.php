@@ -23,7 +23,12 @@ class Seccion extends Eloquent implements UserInterface, RemindableInterface {
     public function horarios(){
             return $this->HasMany('Horarios');
     }
-    
+    /* PENDIENTE */
+    public function User()
+    {
+        return $this->belongsToMany('User');
+    }
+    /*****/
     public function isValid($data)
     {
         $rules = array(

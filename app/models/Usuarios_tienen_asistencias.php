@@ -16,19 +16,18 @@ class Usuarios_tienen_asistencias extends Eloquent implements UserInterface, Rem
 	 */
 	protected $table = 'usuarios_tienen_asistencias';
 
-    protected $fillable = array('user_id','asistencia');
+    protected $fillable = array('user_id','asistencia','seccion_id','horario_id');
     protected $guarded = array('id');
     public $errors;
 
-    public function materia(){
-            return $this->HasMany('Materia');
-    }
     
     public function isValid($data)
     {
         $rules = array(
-            'nombre' => 'required',
-            'director_id' => 'required'
+            'user_id' => 'required',
+            'asistencia' => 'required',
+            'seccion_id' => 'required',
+            'horario_id' => 'required'
         );
 
         $validator = Validator::make($data, $rules);
