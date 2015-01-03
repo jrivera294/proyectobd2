@@ -23,7 +23,7 @@
                     <a href="{{URL::to('profesor/profesorHome')}}">Inicio</a>
                 </li>
                 <li class="{{$path === 'profesor/materias' ? 'active' : '';}}">
-                    <a href="{{URL::to('profesor/profesorHome')}}">Materias</a>
+                    <a href="{{URL::to('profesor/materias')}}">Materias</a>
                 </li>
                 <li class="{{$path === 'profesor/asistencias' ? 'active' : '';}}">
                     <a href="{{URL::to('profesor/profesorHome')}}">Asistencias</a>

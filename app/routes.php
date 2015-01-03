@@ -26,6 +26,7 @@ Route::post('/storeRegister', array('uses'=>'AuthController@storeRegister','as' 
 Route::group(array('before' => 'auth|roleProfesor', 'prefix' => 'profesor'), function()
 {
     Route::get('/profesorHome', array('uses'=>'ProfesorController@index','as' => 'profesorHome'));
+    Route::get('/materias', array('uses'=>'ProfesorController@materias','as' => 'profesor.materias'));
 });
 
 /* Páginas autorizadas para usuarios con rol Director */

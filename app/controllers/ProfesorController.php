@@ -7,4 +7,9 @@ class ProfesorController extends BaseController {
 		return View::make('pages/profesor/profesorHome');
 	}
 
+    public function materias()
+	{
+		return View::make('pages/profesor/materias');
+	}
+
 }
