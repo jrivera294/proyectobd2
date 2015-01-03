@@ -23,10 +23,7 @@
                     <a href="{{URL::to('profesor/profesorHome')}}">Inicio</a>
                 </li>
                 <li class="{{$path === 'profesor/materias' ? 'active' : '';}}">
-                    <a href="{{URL::to('profesor/profesorHome')}}">Materias</a>
-                </li>
-                <li class="{{$path === 'profesor/asistencias' ? 'active' : '';}}">
-                    <a href="{{URL::to('profesor/profesorHome')}}">Asistencias</a>
+                    <a href="{{URL::to('profesor/materias')}}">Materias</a>
                 </li>
                 @elseif(Auth::user()->role==3)
                 <li class="{{$path === 'director/directorHome' ? 'active' : '';}}">
