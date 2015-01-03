@@ -25,9 +25,6 @@
                 <li class="{{$path === 'profesor/materias' ? 'active' : '';}}">
                     <a href="{{URL::to('profesor/materias')}}">Materias</a>
                 </li>
-                <li class="{{$path === 'profesor/asistencias' ? 'active' : '';}}">
-                    <a href="{{URL::to('profesor/profesorHome')}}">Asistencias</a>
-                </li>
                 @elseif(Auth::user()->role==3)
                 <li class="{{$path === 'director/directorHome' ? 'active' : '';}}">
                     <a href="{{URL::to('director/directorHome')}}">Inicio</a>

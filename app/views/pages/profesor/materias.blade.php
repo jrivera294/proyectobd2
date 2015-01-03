@@ -20,12 +20,16 @@
                             <th>Sección</th>
                             <th>Asistencias</th>
                         </tr>
+                        @foreach ($materias as $materia)
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>{{$materia[0]}}</td>
+                            <td>{{$materia[1]}}</td>
+                            <td>{{$materia[2]}}</td>
+                            <td>
+                                <a href="{{URL::to('profesor/materias/'.$materia[2].'/asistencias')}}" class="btn btn-primary btn-sm btn-block" role="button">Ver</a>
+                            </td>
                         </tr>
+                        @endforeach
                     </table>
                 </div>
                 <div class="col-md-1"></div>
