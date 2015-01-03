@@ -1,0 +1,20 @@
+DB:
+-php artisan migrate:install
+-php artisan migrate                                /* Migra o crea las bases de datos ya definidas*/
+-php artisan migrate:make create_nombre_table       /* Crea los migrate para ahi definir las tablas de la BD*/
+-php artisan migrate:rollback                       /* Borra las tablas de la BD */
+
+Errores:
+-composer update
+-composer dumpautoload
+-composer dump-autoload -o
+
+Rutas:
+Ver rutas creadas:
+php artisan routes
+
+Redirect
+
+to ->para funcionamiento de url y despues se lo transforma a la del controlador
+action -> llamar controlador de una
+route-> ruta directamente
