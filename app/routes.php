@@ -39,3 +39,6 @@ Route::group(array('before' => 'auth'), function()
 {
     Route::get('/logout', array('uses'=>'AuthController@logOut','as' => 'logout'));
 });
+
+/* Horario */
+Route::get('/horario', array('uses'=>'HorariosController@index','as' => 'horarioMateria'));
