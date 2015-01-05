@@ -22,11 +22,11 @@
                         </tr>
                         @foreach ($materias as $materia)
                         <tr>
-                            <td>{{$materia[0]}}</td>
-                            <td>{{$materia[1]}}</td>
-                            <td>{{$materia[2]}}</td>
+                            <td>{{$materia->nombreCarrera}}</td>
+                            <td>{{$materia->nombreMateria}}</td>
+                            <td>{{$materia->id}}</td>
                             <td>
-                                <a href="{{URL::to('profesor/materias/'.$materia[2].'/asistencias')}}" class="btn btn-primary btn-sm btn-block" role="button">Ver</a>
+                                <a href="{{URL::to('profesor/materias/'.$materia->id.'/asistencias')}}" class="btn btn-primary btn-sm btn-block" role="button">Ver</a>
                             </td>
                         </tr>
                         @endforeach

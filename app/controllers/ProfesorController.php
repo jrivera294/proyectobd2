@@ -9,24 +9,22 @@ class ProfesorController extends BaseController {
 
     public function materias()
 	{
-        $materias = [
-['Informática','Bases de datos 2','1'],
-['Informática','Computación Gráfica','2']
-        ];
+
+        $materias = Seccion::getSeccionesProfesor(Auth::user()->id);
 
 		return View::make('pages/profesor/materias')->with('materias', $materias);
 	}
 
-    public function asistencias($id)
+    public function asistencias($id,$fecha=null)
 	{
-        $alumnos = [
-['1234','Jose','Rivera','1'],
-['1235122','Yanir','Castillo','2']
-        ];
+        $alumnos = NULL;
+        $fechas = Horarios::where('seccion_id','=',$id)->get();
 
-        $fechas = ['fecha1','fecha2'];
+        if($fecha!=null){
+            $alumnos = Seccion::getAlumnosSeccion($id);
+        }
 
-		return View::make('pages/profesor/asistencias')
+        return View::make('pages/profesor/asistencias')
             ->with('alumnos', $alumnos)
             ->with('fechas', $fechas);
 	}

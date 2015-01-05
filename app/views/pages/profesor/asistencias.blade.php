@@ -11,8 +11,9 @@
                 <div class="col-md-3">
                     <p>Fecha:</p>
                     <select class="form-control">
+                        <option>Seleccione una fecha</option>
                         @foreach ($fechas as $fecha)
-                        <option>{{$fecha}}</option>
+                        <option>{{$fecha->fecha_hora}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -37,16 +38,18 @@
                             <th>Apellido</th>
                             <th>Asistencia</th>
                         </tr>
+                        @if(!is_null($alumnos))
                         @foreach ($alumnos as $alumno)
                         <tr>
-                            <td>{{$alumno[0]}}</td>
-                            <td>{{$alumno[1]}}</td>
-                            <td>{{$alumno[2]}}</td>
+                            <td>{{$alumno->cedula}}</td>
+                            <td>{{$alumno->nombre}}</td>
+                            <td>{{$alumno->apellido}}</td>
                             <td>
-                                {{ Form::select($alumno[3], array('0' => 'No asistió', '1' => 'Asistió', '2' => 'De permiso'), null, array('class' => 'form-control')) }}
+                                {{ Form::select($alumno->id, array('0' => 'No asistió', '1' => 'Asistió', '2' => 'De permiso'), null, array('class' => 'form-control')) }}
                             </td>
                         </tr>
                         @endforeach
+                        @endif
                     </table>
                     <div class="col-md-8"></div>
                     <div class="col-md-4">
