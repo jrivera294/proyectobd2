@@ -30,15 +30,15 @@
                     <a href="{{URL::to('director/directorHome')}}">Inicio</a>
                 </li>
                 </li>
-                <li class="{{$path === 'profesor/materias' ? 'active' : '';}}">
-                    <a href="{{URL::to('profesor/profesorHome')}}">Materias</a>
+                <li class="{{$path === 'director/materias' ? 'active' : '';}}">
+                    <a href="{{URL::to('director/directorHome')}}">Materias</a>
                 </li>
                 <li class="{{$path === 'director/asistencias' ? 'active' : '';}}">
                     <a href="{{URL::to('director/directorHome')}}">Asistencias</a>
                 </li>
                 </li>
                 <li class="{{$path === 'director/alertas' ? 'active' : '';}}">
-                    <a href="{{URL::to('director/profesorHome')}}">Alertas</a>
+                    <a href="{{URL::to('director/directorHome')}}">Alertas</a>
                 </li>
                 @endif
             </ul>

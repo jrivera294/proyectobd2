@@ -27,15 +27,18 @@ Route::group(array('before' => 'auth|roleProfesor', 'prefix' => 'profesor'), fun
 {
     Route::get('/profesorHome', array('uses'=>'ProfesorController@index','as' => 'profesorHome'));
     Route::get('/materias', array('uses'=>'ProfesorController@materias','as' => 'profesor.materias'));
-    Route::get('/materias/{id}/asistencias', array('uses'=>'ProfesorController@asistencias','as' => 'profesor.asistencias'));
+    Route::get('/materias/{id}/asistencias/{fecha?}', array('uses'=>'ProfesorController@asistencias','as' => 'profesor.asistencias'));
+    Route::post('/asistenciasPost', array('uses'=>'ProfesorController@asistenciasPost','as' => 'asistenciasPost'));
+    Route::get('/materias/{id}/asistencias/{fecha}/asistenciasTodos/{asistencia}', array('uses'=>'ProfesorController@asistenciasTodos','as' => 'profesor.asistenciasTodos'));
 });
 
 /* Páginas autorizadas para usuarios con rol Director */
 Route::group(array('before' => 'auth|roleDirector', 'prefix' => 'director'), function()
 {
     Route::get('/directorHome', array('uses'=>'DirectorController@index','as' => 'directorHome'));
-    /* Cambiar la ruta a /materias/{id}/secciones */
-    Route::get('/secciones', array('uses'=>'DirectorController@secciones','as' => 'director.secciones'));
+    Route::get('/materias', array('uses'=>'MateriasController@index','as' => 'materias'));
+    Route::get('/{id}/seleccionProfesores', array('uses'=>'DirectorController@seleccion_de_profesor','as' => 'seleccionarProfesor'));
+    Route::post('/profesorSeleccionado', array('uses'=>'DirectorController@asignar_profesor','as' => 'asignar_profesor'));
 });
 
 /* Páginas autorizadas para cuadlquier usuario */

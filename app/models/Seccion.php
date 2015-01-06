@@ -48,4 +48,28 @@ class Seccion extends Eloquent implements UserInterface, RemindableInterface {
         }
     }
 
+    public static function getSeccionesProfesor($profesor_id){
+        $results = DB::select(
+            DB::raw("SELECT carrera.nombre AS nombreCarrera, materia.nombre AS nombreMateria, seccion.id
+                FROM seccion
+                    LEFT JOIN materia ON materia.id = seccion.materia_id
+                    LEFT JOIN carrera ON carrera.id = materia.carrera_id
+                WHERE seccion.profesor_id = ".$profesor_id));
+        return $results;
+    }
+
+    public static function getAlumnosSeccion($seccion_id,$horario_id){
+        $results = DB::select(
+            DB::raw("SELECT users.id, users.cedula, users.nombre, users.apellido, usuarios_tienen_asistencias.asistencia
+                FROM alumno_cursa_materia
+                    LEFT JOIN users
+                        ON alumno_cursa_materia.alumno_id = users.id
+                    LEFT JOIN usuarios_tienen_asistencias
+                        ON usuarios_tienen_asistencias.user_id = users.id
+                            AND usuarios_tienen_asistencias.seccion_id = ".$seccion_id."
+                            AND usuarios_tienen_asistencias.horario_id = ".$horario_id."
+                WHERE alumno_cursa_materia.seccion_id = ".$seccion_id));
+        return $results;
+    }
+
 }
