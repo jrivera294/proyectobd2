@@ -49,3 +49,5 @@ Route::group(array('before' => 'auth'), function()
 
 /* Horario */
 Route::get('/horario', array('uses'=>'HorariosController@index','as' => 'horarioMateria'));
+Route::post('/horario/storeHorario', array('uses'=>'HorariosController@store','as' => 'storeHorario'));
+Route::get('/horario/storeHorario/{id}', array('uses'=>'HorariosController@eliminarHorario','as' => 'eliminarHorario'));
