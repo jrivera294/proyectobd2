@@ -28,6 +28,8 @@ Route::group(array('before' => 'auth|roleProfesor', 'prefix' => 'profesor'), fun
     Route::get('/profesorHome', array('uses'=>'ProfesorController@index','as' => 'profesorHome'));
     Route::get('/materias', array('uses'=>'ProfesorController@materias','as' => 'profesor.materias'));
     Route::get('/materias/{id}/asistencias/{fecha?}', array('uses'=>'ProfesorController@asistencias','as' => 'profesor.asistencias'));
+    Route::post('/asistenciasPost', array('uses'=>'ProfesorController@asistenciasPost','as' => 'asistenciasPost'));
+    Route::get('/materias/{id}/asistencias/{fecha}/asistenciasTodos/{asistencia}', array('uses'=>'ProfesorController@asistenciasTodos','as' => 'profesor.asistenciasTodos'));
 });
 
 /* Páginas autorizadas para usuarios con rol Director */
