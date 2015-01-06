@@ -39,6 +39,8 @@ Route::group(array('before' => 'auth|roleDirector', 'prefix' => 'director'), fun
     Route::get('/materias', array('uses'=>'MateriasController@index','as' => 'materias'));
     Route::get('/{id}/seleccionProfesores', array('uses'=>'DirectorController@seleccion_de_profesor','as' => 'seleccionarProfesor'));
     Route::post('/profesorSeleccionado', array('uses'=>'DirectorController@asignar_profesor','as' => 'asignar_profesor'));
+    /* Cambiar la ruta a /materias/{id}/secciones */
+    Route::get('/secciones', array('uses'=>'DirectorController@secciones','as' => 'director.secciones'));
 });
 
 /* Páginas autorizadas para cuadlquier usuario */
