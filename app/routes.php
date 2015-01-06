@@ -34,6 +34,9 @@ Route::group(array('before' => 'auth|roleProfesor', 'prefix' => 'profesor'), fun
 Route::group(array('before' => 'auth|roleDirector', 'prefix' => 'director'), function()
 {
     Route::get('/directorHome', array('uses'=>'DirectorController@index','as' => 'directorHome'));
+    Route::get('/materias', array('uses'=>'MateriasController@index','as' => 'materias'));
+    Route::get('/{id}/seleccionProfesores', array('uses'=>'DirectorController@seleccion_de_profesor','as' => 'seleccionarProfesor'));
+    Route::post('/profesorSeleccionado', array('uses'=>'DirectorController@asignar_profesor','as' => 'asignar_profesor'));
 });
 
 /* Páginas autorizadas para cuadlquier usuario */
