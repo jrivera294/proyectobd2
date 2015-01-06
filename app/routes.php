@@ -34,6 +34,8 @@ Route::group(array('before' => 'auth|roleProfesor', 'prefix' => 'profesor'), fun
 Route::group(array('before' => 'auth|roleDirector', 'prefix' => 'director'), function()
 {
     Route::get('/directorHome', array('uses'=>'DirectorController@index','as' => 'directorHome'));
+    /* Cambiar la ruta a /materias/{id}/secciones */
+    Route::get('/secciones', array('uses'=>'DirectorController@secciones','as' => 'director.secciones'));
 });
 
 /* Páginas autorizadas para cuadlquier usuario */
@@ -44,3 +46,5 @@ Route::group(array('before' => 'auth'), function()
 
 /* Horario */
 Route::get('/horario', array('uses'=>'HorariosController@index','as' => 'horarioMateria'));
+Route::post('/horario/storeHorario', array('uses'=>'HorariosController@store','as' => 'storeHorario'));
+Route::get('/horario/storeHorario/{id}', array('uses'=>'HorariosController@eliminarHorario','as' => 'eliminarHorario'));
