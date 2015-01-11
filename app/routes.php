@@ -39,8 +39,14 @@ Route::group(array('before' => 'auth|roleDirector', 'prefix' => 'director'), fun
     Route::get('/materias', array('uses'=>'MateriasController@index','as' => 'materias'));
     Route::get('/{id}/seleccionProfesores', array('uses'=>'DirectorController@seleccion_de_profesor','as' => 'seleccionarProfesor'));
     Route::post('/profesorSeleccionado', array('uses'=>'DirectorController@asignar_profesor','as' => 'asignar_profesor'));
+    /* SECCIONES */
     /* Cambiar la ruta a /materias/{id}/secciones */
-    Route::get('/secciones', array('uses'=>'DirectorController@secciones','as' => 'director.secciones'));
+    Route::get('materias/{id}/secciones', array('uses'=>'DirectorController@secciones','as' => 'director.secciones'));
+    Route::get('materias/{id}/secciones/{idS}/eliminar', array('uses'=>'DirectorController@eliminarSeccion','as' => 'director.eliminarSeccion'));
+    /* HORARIOS */
+    Route::get('secciones/{idS}/horario', array('uses'=>'HorariosController@index','as' => 'horarioMateria'));
+    Route::post('secciones/{idS}/horario/storeHorario', array('uses'=>'HorariosController@store','as' => 'storeHorario'));
+    Route::get('secciones/{idS}/horario/storeHorario/{idH}/eliminar', array('uses'=>'HorariosController@eliminarHorario','as' => 'eliminarHorario'));
 });
 
 /* Páginas autorizadas para cuadlquier usuario */
@@ -50,6 +56,4 @@ Route::group(array('before' => 'auth'), function()
 });
 
 /* Horario */
-Route::get('/horario', array('uses'=>'HorariosController@index','as' => 'horarioMateria'));
-Route::post('/horario/storeHorario', array('uses'=>'HorariosController@store','as' => 'storeHorario'));
-Route::get('/horario/storeHorario/{id}', array('uses'=>'HorariosController@eliminarHorario','as' => 'eliminarHorario'));
+

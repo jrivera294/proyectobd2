@@ -2,11 +2,11 @@
 
 class HorariosController extends BaseController {
 
-    public function index()
+    public function index($seccion_id)
 	{
             /* Acomodar seccion_id */
-            $horario = Horarios::where('seccion_id', '=', 1)->get();
-            $seccion = Seccion::find(1);
+            $horario = Horarios::where('seccion_id', '=', $seccion_id)->get();
+            $seccion = Seccion::find($seccion_id);
             $materia = Materia::find($seccion->materia_id);
             return View::make('pages/horario/horario_seccion')->with('horario',$horario)->with('materia',$materia);
 	}

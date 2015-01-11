@@ -24,11 +24,17 @@ class DirectorController extends BaseController {
                 return Input::all();
             }
  
-       public function secciones() {
-             /* Acomodar materia_id */
-            $seccion = Seccion::where('materia_id', '=', 1)->get();
-            $materia = Materia::find(1);
+       public function secciones($materia_id) {
+            $seccion = Seccion::getSeccionesMateria($materia_id); 
+            $materia = Materia::find($materia_id);
             return View::make('pages/director/seccion/secciones_materia')->with('seccion',$seccion)->with('materia',$materia);	
         }
             
+       public function eliminarSeccion($id){
+            $seccion = Seccion::find($id);
+
+            $seccion->delete();
+
+            return Redirect::route('director.secciones');
+       } 
 }
