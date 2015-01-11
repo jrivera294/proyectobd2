@@ -86,4 +86,11 @@ class Seccion extends Eloquent implements UserInterface, RemindableInterface {
                 WHERE materia.carrera_id = ".$carrera_id));
         return $results;
     }
+    public static function getSeccionesMateria($materia_id){
+        $results = DB::select(
+            DB::raw("SELECT sec.id, usr.nombre, usr.apellido, per.fecha_fin, per.fecha_ini
+                     FROM users AS usr, seccion AS sec, periodo AS per
+                     WHERE usr.id = sec.profesor_id AND per.id = sec.periodo_id AND sec.materia_id = ".$materia_id));
+        return $results;
+    }    
 }
