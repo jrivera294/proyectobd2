@@ -65,5 +65,17 @@ class DirectorController extends BaseController {
             ->with('fechas', $fechas)
             ->with('fecha_id',$fecha);
     }
-        
+         public function secciones($materia_id) {
+            $seccion = Seccion::getSeccionesMateria($materia_id); 
+            $materia = Materia::find($materia_id);
+            return View::make('pages/director/seccion/secciones_materia')->with('seccion',$seccion)->with('materia',$materia);
+         }
+            
+       public function eliminarSeccion($id){
+            $seccion = Seccion::find($id);
+
+            $seccion->delete();
+
+            return Redirect::route('director.secciones');
+       } 
 }
