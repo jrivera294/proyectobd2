@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-md-1"></div>
             <div class="col-md-10">
-                
+                <h2 class="page-header" id="titulo_registrar_curso">Profesores</h2>
                 
                 {{ Form::open(array('route' => 'asignar_profesor', 'method' => 'POST', 'id' => 'laravel_form'), array('role' => 'form')) }}
                 
