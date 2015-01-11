@@ -1,4 +1,4 @@
-@extends('layouts.master')  
+@extends('layouts.master')
 @section ('title') Asistencias3000 - {{$materia->nombre}} @stop
 @section('content')
     <!-- Page Content -->

@@ -11,7 +11,7 @@ class HorariosController extends BaseController {
             return View::make('pages/horario/horario_seccion')->with('horario',$horario)->with('materia',$materia);
 	}
 
-        
+
      public function store(){
         $horario = new Horarios;
 
@@ -32,16 +32,16 @@ class HorariosController extends BaseController {
             return Redirect::route('horarioMateria')
                 ->withInput()
                 ->withErrors($horario->errors)
-                ->with('error_flag',true);    
+                ->with('error_flag',true);
         }
     }
-    
+
     public function eliminarHorario($id){
         $horario = Horarios::find($id);
 
         $horario->delete();
-      
+
         return Redirect::route('horarioMateria');
-    } 
-    
+    }
+
 }

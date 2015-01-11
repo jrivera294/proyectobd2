@@ -14,7 +14,7 @@ class Carrera extends Eloquent implements UserInterface, RemindableInterface {
 	 *
 	 * @var string
 	 */
-	protected $table = 'seccion';
+	protected $table = 'carrera';
 
     protected $fillable = array('nombre','director_id');
     protected $guarded = array('id');
@@ -42,4 +42,17 @@ class Carrera extends Eloquent implements UserInterface, RemindableInterface {
         }
     }
 
+    public static function getCarreraByDirector($director_id){
+        return Carrera::where('director_id','=',$director_id)->first();
+    }
+
+    public static function getFechasCarrera($carrera_id){
+        $results = DB::select(
+            DB::raw("SELECT horario.id, horario.fecha_hora, horario.seccion_id
+                FROM materia
+                    LEFT JOIN seccion ON seccion.materia_id = materia.id
+                    LEFT JOIN horario ON horario.seccion_id = seccion.id
+                WHERE materia.carrera_id = ".$carrera_id));
+        return $results;
+    }
 }
