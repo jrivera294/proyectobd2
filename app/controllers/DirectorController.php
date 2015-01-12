@@ -98,6 +98,12 @@ class DirectorController extends BaseController {
             ->with('tipo_error', 'success');
     }
 
+    public function alertas(){
+        $alertas = Alerta::where('leido','=',false)->get();
+        return View::make('pages/director/alertas')
+            ->with('alertas',$alertas);
+    }
+
          public function secciones($materia_id) {
             $seccion = Seccion::getSeccionesMateria($materia_id); 
             $materia = Materia::find($materia_id);

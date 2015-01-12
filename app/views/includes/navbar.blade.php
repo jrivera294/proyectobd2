@@ -38,7 +38,7 @@
                 </li>
                 </li>
                 <li class="{{$path === 'director/alertas' ? 'active' : '';}}">
-                    <a href="{{URL::to('director/directorHome')}}">Alertas</a>
+                    <a href="{{URL::to('director/alertas')}}">Alertas</a>
                 </li>
                 @endif
             </ul>
