@@ -32,10 +32,16 @@
                 </tr>
                 @endforeach
             </tbody>
-        </table>
+        </table>    
     </div>
 </div>
-
+<div class="row">
+    <div class="col-md-8"></div>
+    <div class=""
+    <a href="{{URL::to('/materias/'.$materia->id.'/seleccionProfesores')}}" class="btn btn-success btn-xs btn-block" role="button">
+        <span class="glyphicon glyphicon-remove"></span>
+    </a>    
+</div>
 @stop
 
 @section('page_scripts')
