@@ -34,7 +34,7 @@
                     <a href="{{URL::to('director/directorHome')}}">Materias</a>
                 </li>
                 <li class="{{$path === 'director/asistencias' ? 'active' : '';}}">
-                    <a href="{{URL::to('director/directorHome')}}">Asistencias</a>
+                    <a href="{{URL::to('director/asistencias')}}">Asistencias</a>
                 </li>
                 </li>
                 <li class="{{$path === 'director/alertas' ? 'active' : '';}}">

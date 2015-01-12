@@ -11,16 +11,16 @@
                     <p>Fecha:</p>
                     <select id="fecha_select" class="form-control">
                         <option VALUE="{{ URL::action('DirectorController@asistencias') }}"
-                        @if($fecha_id==null)
+                        @if($fecha==null)
                         SELECTED
                         @endif
                         >Seleccione una fecha</option>
-                        @foreach ($fechas as $fecha)
-                        <option VALUE="{{ URL::action('DirectorController@asistencias', [$fecha->id]) }}"
-                        @if($fecha_id == $fecha->id)
+                        @foreach ($fechas as $fechaFor)
+                        <option VALUE="{{ URL::action('DirectorController@asistencias', [$fechaFor->fecha_hora]) }}"
+                        @if($fecha == $fechaFor->fecha_hora)
                         SELECTED
                         @endif
-                        >{{$fecha->fecha_hora}}</option>
+                        >{{$fechaFor->fecha_hora}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -38,7 +38,7 @@
                 <div class="col-md-1"></div>
                 <div class="col-md-10">
                     {{ Form::open(array('route' => 'asistenciasPost', 'method' => 'POST', 'id' => 'laravel_form'), array('role' => 'form')) }}
-                    <input type="hidden" name="horario_id" value="{{$fecha_id}}" >
+                    <input type="hidden" name="horario_id" value="{{$fecha}}">
                     <table class="table table-bordered">
                         <tr>
                             <th>Cédula</th>
@@ -50,6 +50,7 @@
                         </tr>
                         @if(!is_null($profesores))
                         @foreach ($profesores as $profesor)
+                        <?php if(is_null($profesor->asistencia)) $profesor->asistencia = (-1); ?>
                         <tr>
                             <td>{{$profesor->cedula}}</td>
                             <td>{{$profesor->nombre}}</td>
@@ -57,7 +58,7 @@
                             <td>{{$profesor->materia}}</td>
                             <td>{{$profesor->seccion}}</td>
                             <td>
-                                {{ Form::select($profesor->id, array('-1' => '','0' => 'No asistió', '1' => 'Asistió', '2' => 'De permiso'), $profesor->asistencia, array('class' => 'form-control')) }}
+                                {{ Form::select($profesor->id, array('(-1)' => '','0' => 'No asistió', '1' => 'Asistió', '2' => 'De permiso'), $profesor->asistencia, array('class' => 'form-control')) }}
                             </td>
                         </tr>
                         @endforeach

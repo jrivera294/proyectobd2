@@ -47,23 +47,21 @@ class DirectorController extends BaseController {
 
    }
 
-        public function asistencias($fecha=null){
+    public function asistencias($fecha=null){
         $carrera_id = Carrera::getCarreraByDirector(Auth::user()->id)->id;
 
         $profesores = NULL;
         $fechas = Carrera::getFechasCarrera($carrera_id);
 
-        //$fecha = new DateTime(Horarios::find($fecha)->fecha_hora);
-
         if($fecha!=null){
             $profesores = Seccion::getAsistenciasProfesores($fecha,$carrera_id);
-            return $profesores;
+            //return $profesores;
         }
 
         return View::make('pages/director/asistencias')
             ->with('profesores', $profesores)
             ->with('fechas', $fechas)
-            ->with('fecha_id',$fecha);
+            ->with('fecha',$fecha);
     }
         
 }
