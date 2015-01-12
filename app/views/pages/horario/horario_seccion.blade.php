@@ -7,7 +7,7 @@
    <div class="col-md-6">
        <h2 class="page-header" id="titulo_registrar_curso">Horario de "{{$materia->nombre}}"</h2>
        {{ Form::open(array('route' => 'storeHorario', 'method' => 'POST'), array('role' => 'form', 'id' => 'Horario')) }}
-       {{ Form::hidden('seccion_id',1, array('id' => 'id')) }}
+       {{ Form::hidden('seccion_id',$seccion_id, array('id' => 'id')) }}
        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
             <thead>
                 <tr>
@@ -21,9 +21,8 @@
                     <td>{{ $horarios->id }}</td>
                     <td>{{ $horarios->fecha_hora }}</td>
                     <td class="center">
-                        <button type="button" class="btn btn-block btn-xs btn-danger" data-target="#eliminar" onClick=" setEliminarHorario({{$horarios->id}}); ">
-                            <span class="glyphicon glyphicon-remove"></span>
-                        </button>
+                        <a href="{{URL::to('director/materias/'.$materia->id.'/secciones/'.$seccion_id.'/horario/'.$horarios->id.'/eliminar')}}" class="btn btn-danger btn-xs btn-block" role="button">
+                        <span class="glyphicon glyphicon-remove"></span>
                     </td>
                 </tr>
                 @endforeach
@@ -42,11 +41,4 @@
 
 @section('page_scripts')
 
-<script>
-
-    function setEliminarHorario(idHorario){
-        window.location = "{{route('eliminarHorario','');}}"+'/'+idHorario; ;
-    }
-
-</script>
 @stop

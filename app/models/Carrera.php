@@ -48,7 +48,7 @@ class Carrera extends Eloquent implements UserInterface, RemindableInterface {
 
     public static function getFechasCarrera($carrera_id){
         $results = DB::select(
-            DB::raw("SELECT horario.id, horario.fecha_hora, horario.seccion_id
+            DB::raw("SELECT DISTINCT DATE(horario.fecha_hora) AS fecha_hora
                 FROM materia
                     LEFT JOIN seccion ON seccion.materia_id = materia.id
                     LEFT JOIN horario ON horario.seccion_id = seccion.id
