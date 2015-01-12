@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section ('title') Asistencias3000 - Materias @stop
+@section ('title') Asistencias3000 - Asistencias @stop
 @section('content')
     <!-- Page Content -->
            <div class="row">
