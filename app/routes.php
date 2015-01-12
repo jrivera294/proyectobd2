@@ -37,7 +37,7 @@ Route::group(array('before' => 'auth|roleDirector', 'prefix' => 'director'), fun
 {
     Route::get('/directorHome', array('uses'=>'DirectorController@index','as' => 'directorHome'));
     Route::get('/materias', array('uses'=>'MateriasController@index','as' => 'materias'));
-    Route::get('/{id}/seleccionProfesores', array('uses'=>'DirectorController@seleccion_de_profesor','as' => 'seleccionarProfesor'));
+    Route::get('/materias/{id}/seleccionProfesores', array('uses'=>'DirectorController@seleccion_de_profesor','as' => 'seleccionarProfesor'));
     Route::post('/profesorSeleccionado', array('uses'=>'DirectorController@asignar_profesor','as' => 'asignar_profesor'));
     Route::get('/asistencias/{fecha?}', array('uses'=>'DirectorController@asistencias','as' => 'asistencias'));
     Route::post('/asistenciasPost', array('uses'=>'DirectorController@asistenciasPost','as' => 'asistenciasPostDir'));
