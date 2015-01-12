@@ -13,7 +13,6 @@
                 <tr>
                     <th>id</th>
                     <th>Fecha y Hora</th>
-                    <th></th>
                 </tr>
             </thead>
             <tbody>

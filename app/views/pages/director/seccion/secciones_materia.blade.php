@@ -12,18 +12,22 @@
                     <th>id</th>
                     <th>Nombre y Apellido</th>
                     <th>Periodo</th>
+                    <th>Horarios</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($seccion as $secciones)
                 <tr class="odd gradeX">
                     <td>{{ $secciones->id }}</td>
-                    <td>    </td>
-                    <td>    </td>
+                    <td>Prof. {{ $secciones->nombre}} {{ $secciones->apellido }}    </td>
+                    <td> {{ $secciones->fecha_ini}} - {{ $secciones->fecha_fin }}   </td>
                     <td class="center">
-                        <button type="button" class="btn btn-block btn-xs btn-danger" data-target="#eliminar" onClick=" setEliminarHorario({{$secciones ->id}}); ">
-                            <span class="glyphicon glyphicon-remove"></span>
-                        </button>
+                        <a href="{{URL::to('director/secciones/'.$secciones->id.'/horario')}}" class="btn btn-primary btn-xs btn-block" role="button">
+                        <span class="glyphicon glyphicon-list-alt"></span>
+                    </td>
+                    <td class="center">
+                        <a href="{{URL::to('director/secciones/'.$secciones->id.'/eliminar')}}" class="btn btn-danger btn-xs btn-block" role="button">
+                        <span class="glyphicon glyphicon-remove"></span>
                     </td>
                 </tr>
                 @endforeach
@@ -38,9 +42,11 @@
 
 <script>
 
-    function setEliminarHorario(idHorario){
-        window.location = "{{route('eliminarHorario','');}}"+'/'+idHorario; ;
+    function setEliminarSeccion(idSeccion){
+        window.location = "{{route('director.eliminarSeccion','');}}"+'/'+idSeccion;
     }
+    
+
 
 </script>
 @stop
