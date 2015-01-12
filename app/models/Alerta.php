@@ -39,11 +39,16 @@ class Alerta extends Eloquent implements UserInterface, RemindableInterface {
         }
     }
 
-    public static function getAlertasByCarrera($carrera_id){
+    public static function getAlertasByCarrera($carrera_id,$leido){
         $results = DB::select(
-            DB::raw("SELECT user.cedula, user.nombre, user.apellido, alerta.id, alerta.cod_alerta, alerta.leido, materia.nombre AS materia, seccion.id
-                    FROM alerta
-                    WHERE carrera.director_id =  ".carrera_id));
+            DB::raw("SELECT users.role, users.cedula, users.nombre, users.apellido, alerta.id, alerta.cod_alerta, alerta.leido, materia.nombre AS materia, seccion.id AS seccion
+                    FROM carrera
+                        LEFT JOIN materia ON materia.carrera_id = carrera.id
+                        LEFT JOIN seccion ON seccion.materia_id = materia.id
+                        LEFT JOIN alerta ON alerta.seccion_id = seccion.id
+                        LEFT JOIN users ON users.id = alerta.user_id
+                    WHERE carrera.director_id =  ".$carrera_id."
+                    AND alerta.leido = ".$leido));
         return $results;
     }
 }

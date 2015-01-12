@@ -23,7 +23,7 @@ class AuthController extends BaseController {
             }
 
         }else{
-            return Redirect::to('/login')
+            return Redirect::to('/')
                 ->with('tipo_error', 'danger')
                 ->with('mensaje_error', 'Tu dirección de e-mail o contraseña son incorrectos.')
                 ->withInput(Input::except('password'))
