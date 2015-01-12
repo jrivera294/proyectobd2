@@ -22,11 +22,11 @@
                     <td>Prof. {{ $secciones->nombre}} {{ $secciones->apellido }}    </td>
                     <td> {{ $secciones->fecha_ini}} - {{ $secciones->fecha_fin }}   </td>
                     <td class="center">
-                        <a href="{{URL::to('director/secciones/'.$secciones->id.'/horario')}}" class="btn btn-primary btn-xs btn-block" role="button">
+                        <a href="{{URL::to('director/materias/'.$materia->id.'/secciones/'.$secciones->id.'/horario')}}" class="btn btn-primary btn-xs btn-block" role="button">
                         <span class="glyphicon glyphicon-list-alt"></span>
                     </td>
                     <td class="center">
-                        <a href="{{URL::to('director/secciones/'.$secciones->id.'/eliminar')}}" class="btn btn-danger btn-xs btn-block" role="button">
+                        <a href="{{URL::to('director/materias/'.$materia->id.'/secciones/'.$secciones->id.'/eliminar')}}" class="btn btn-danger btn-xs btn-block" role="button">
                         <span class="glyphicon glyphicon-remove"></span>
                     </td>
                 </tr>
@@ -39,14 +39,4 @@
 @stop
 
 @section('page_scripts')
-
-<script>
-
-    function setEliminarSeccion(idSeccion){
-        window.location = "{{route('director.eliminarSeccion','');}}"+'/'+idSeccion;
-    }
-    
-
-
-</script>
 @stop
