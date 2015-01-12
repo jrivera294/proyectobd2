@@ -43,5 +43,13 @@ class Materia extends Eloquent implements UserInterface, RemindableInterface {
             return false;
         }
     }
-
+        
+     public static function getIdCarrera($director_id){
+        $results = DB::select(
+            DB::raw("SELECT carrera.id 
+                    FROM carrera 
+                    WHERE carrera.director_id =  ".$director_id));
+        return $results;
+    }
+    
 }

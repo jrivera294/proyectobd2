@@ -104,11 +104,11 @@ class DirectorController extends BaseController {
             return View::make('pages/director/seccion/secciones_materia')->with('seccion',$seccion)->with('materia',$materia);
          }
             
-       public function eliminarSeccion($id){
+       public function eliminarSeccion($materias_id,$id){
             $seccion = Seccion::find($id);
 
             $seccion->delete();
 
-            return Redirect::route('director.secciones');
+            return Redirect::to('director/materias/'.$materias_id.'/secciones/');
        } 
 }
