@@ -63,6 +63,41 @@ class DirectorController extends BaseController {
             ->with('fechas', $fechas)
             ->with('fecha',$fecha);
     }
+
+    public function asistenciasPost(){
+        $asistencias = Input::except(array('_token', 'seccion_id','horario_id','profesor_id','fecha'));
+        $profesor_id = Input::get('profesor_id');
+        $seccion_id = Input::get('seccion_id');
+        $horario_id = Input::get('horario_id');
+
+        foreach ($asistencias as $i => $asistencia){
+
+            if($asistencia!=(-1)){
+                $data = Usuarios_tienen_asistencias::where('user_id','=',$profesor_id[$i-1])
+                    ->where('seccion_id','=',$seccion_id[$i-1])
+                    ->where('horario_id','=',$horario_id[$i-1])->first();
+                if(is_null($data)){
+                    $alumno = new Usuarios_tienen_asistencias;
+                    $data = array(
+                        'user_id' => $profesor_id[$i-1],
+                        'asistencia' => $asistencia,
+                        'seccion_id' => $seccion_id[$i-1],
+                        'horario_id' => $horario_id[$i-1]
+                    );
+                    $alumno->fill($data);
+                }else{
+                    $alumno = Usuarios_tienen_asistencias::find($data->id);
+                    $alumno->asistencia = $asistencia;
+                }
+                $alumno->save();
+            }
+        }
+
+        return Redirect::route('director.asistencias',array(Input::get('fecha')))
+            ->with('mensaje_error', 'Asistencias almacenadas correctamente')
+            ->with('tipo_error', 'success');
+    }
+
          public function secciones($materia_id) {
             $seccion = Seccion::getSeccionesMateria($materia_id); 
             $materia = Materia::find($materia_id);

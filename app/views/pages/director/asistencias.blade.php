@@ -37,8 +37,8 @@
                <hr>
                 <div class="col-md-1"></div>
                 <div class="col-md-10">
-                    {{ Form::open(array('route' => 'asistenciasPost', 'method' => 'POST', 'id' => 'laravel_form'), array('role' => 'form')) }}
-                    <input type="hidden" name="horario_id" value="{{$fecha}}">
+                    {{ Form::open(array('route' => 'asistenciasPostDir', 'method' => 'POST', 'id' => 'laravel_form'), array('role' => 'form')) }}
+
                     <table class="table table-bordered">
                         <tr>
                             <th>Cédula</th>
@@ -49,8 +49,10 @@
                             <th>Asistencia</th>
                         </tr>
                         @if(!is_null($profesores))
+                        <?php $i = 0; ?>
                         @foreach ($profesores as $profesor)
                         <?php if(is_null($profesor->asistencia)) $profesor->asistencia = (-1); ?>
+                        <?php $i++; ?>
                         <tr>
                             <td>{{$profesor->cedula}}</td>
                             <td>{{$profesor->nombre}}</td>
@@ -58,9 +60,13 @@
                             <td>{{$profesor->materia}}</td>
                             <td>{{$profesor->seccion}}</td>
                             <td>
-                                {{ Form::select($profesor->id, array('(-1)' => '','0' => 'No asistió', '1' => 'Asistió', '2' => 'De permiso'), $profesor->asistencia, array('class' => 'form-control')) }}
+                                {{ Form::select($i, array('-1' => '','0' => 'No asistió', '1' => 'Asistió', '2' => 'De permiso'), $profesor->asistencia, array('class' => 'form-control')) }}
                             </td>
                         </tr>
+                        {{ Form::hidden('profesor_id[]', $profesor->id) }}
+                        {{ Form::hidden('horario_id[]', $profesor->horario_id) }}
+                        {{ Form::hidden('seccion_id[]', $profesor->seccion) }}
+
                         @endforeach
                         @endif
                     </table>
@@ -68,7 +74,10 @@
                     <div class="col-md-4">
                         {{ Form::button('Guardar', array('type' => 'submit', 'class' => 'btn btn-primary btn-block')) }}
                     </div>
+                    {{ Form::hidden('fecha', $fecha) }}
                     {{ Form::close() }}
+
+
                 </div>
                 <div class="col-md-1"></div>
             </div>
