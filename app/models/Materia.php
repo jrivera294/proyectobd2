@@ -52,4 +52,7 @@ class Materia extends Eloquent implements UserInterface, RemindableInterface {
         return $results;
     }
     
+
+    
+    
 }
