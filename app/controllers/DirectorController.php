@@ -98,6 +98,34 @@ class DirectorController extends BaseController {
             ->with('tipo_error', 'success');
     }
 
+    public function alertas($leido=null){
+        if($leido==null){
+            $leido = 0;
+        }if($leido == 0 || $leido == 1){
+
+        }else{
+            App::abort(404);
+        }
+
+        $alertas = Alerta::getAlertasByCarrera(Auth::user()->id,$leido);
+        return View::make('pages/director/alertas')
+            ->with('alertas',$alertas)
+            ->with('tipo_alertas',$leido);
+    }
+
+    public function descartarAlerta($alerta_id){
+        $alerta = Alerta::find($alerta_id);
+        if (is_null ($alerta))
+        {
+            App::abort(404);
+        }
+        $alerta->leido = 1;
+        $alerta->save();
+        return Redirect::route('alertas')
+            ->with('mensaje_error', 'Alerta descartada')
+            ->with('tipo_error', 'success');
+    }
+
          public function secciones($materia_id) {
             $seccion = Seccion::getSeccionesMateria($materia_id); 
             $materia = Materia::find($materia_id);

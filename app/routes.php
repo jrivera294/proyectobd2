@@ -11,13 +11,9 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('pages/ejemplo');
-});
 
 /* Autenticacion */
-Route::get('/login', array('uses'=>'AuthController@login','as' => 'login'));
+Route::get('/', array('uses'=>'AuthController@login','as' => 'login'));
 Route::post('/loginPost', array('uses'=>'AuthController@loginPost','as' => 'loginPost'));
 Route::get('/register', array('uses'=>'AuthController@register','as' => 'register'));
 Route::post('/storeRegister', array('uses'=>'AuthController@storeRegister','as' => 'storeRegister'));
@@ -39,8 +35,13 @@ Route::group(array('before' => 'auth|roleDirector', 'prefix' => 'director'), fun
     Route::get('/materias', array('uses'=>'MateriasController@index','as' => 'materias'));
     Route::get('/materias/{id}/seleccionProfesores', array('uses'=>'DirectorController@seleccion_de_profesor','as' => 'seleccionarProfesor'));
     Route::post('/profesorSeleccionado', array('uses'=>'DirectorController@asignar_profesor','as' => 'asignar_profesor'));
-    Route::get('/asistencias/{fecha?}', array('uses'=>'DirectorController@asistencias','as' => 'asistencias'));
+    /*Asistencias*/
+    Route::get('/asistencias/{fecha?}', array('uses'=>'DirectorController@asistencias','as' => 'director.asistencias'));
     Route::post('/asistenciasPost', array('uses'=>'DirectorController@asistenciasPost','as' => 'asistenciasPostDir'));
+    /*Alertas*/
+    Route::get('/alertas/{leido?}', array('uses'=>'DirectorController@alertas','as' => 'alertas'));
+    Route::get('/alertas/{id}/descartar', array('uses'=>'DirectorController@descartarAlerta','as' => 'descartarAlerta'));
+
     Route::get('materias/{id}/eliminar', array('uses'=>'MateriasController@eliminarMateria','as' => 'eliminarMateria'));
     Route::post('/materiaSeleccionada', array('uses'=>'MateriasController@asignar_materia','as' => 'asignar_materia'));
     /*MATERIAS*/

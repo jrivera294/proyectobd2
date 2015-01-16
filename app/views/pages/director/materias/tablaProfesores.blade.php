@@ -40,7 +40,7 @@
                     </table>
                 
                  <div class="center">
-                            {{ Form::button('Aceptar', array('type' => 'submit', 'class' => 'btn btn-primary btn-block')) }}
+                            {{ Form::button('Aceptar', array('type' => 'submit', 'class' => 'btn btn-primary ')) }}
                         </div>
                 
                 
