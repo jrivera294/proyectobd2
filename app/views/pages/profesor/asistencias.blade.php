@@ -27,6 +27,7 @@
                 <div class="col-md-3">
                     <p>Marcar todos como:</p>
                     <select id="marcar_asistencias" class="form-control">
+                        <option value="#"> </option>
                         <option VALUE="{{ URL::action('ProfesorController@asistenciasTodos', [$seccion_id,$fecha->id,'1']) }}">Asistieron</option>
                         <option VALUE="{{ URL::action('ProfesorController@asistenciasTodos', [$seccion_id,$fecha->id,'0']) }}">No asistieron</option>
                         <option VALUE="{{ URL::action('ProfesorController@asistenciasTodos', [$seccion_id,$fecha->id,'2']) }}">De permiso</option>
