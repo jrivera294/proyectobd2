@@ -37,10 +37,11 @@
 </div>
 <div class="row">
     <div class="col-md-8"></div>
-    <div class=""
-    <a href="{{URL::to('/materias/'.$materia->id.'/seleccionProfesores')}}" class="btn btn-success btn-xs btn-block" role="button">
-        <span class="glyphicon glyphicon-remove"></span>
-    </a>    
+    <div class="col-md-1">
+        <a href="{{URL::to('director/materias/'.$materia->id.'/seleccionProfesores')}}" class="btn btn-success btn-xs btn-block" role="button">
+           Registrar
+        </a> 
+    </div>
 </div>
 @stop
 
