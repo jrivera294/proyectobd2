@@ -94,5 +94,9 @@ class Seccion extends Eloquent implements UserInterface, RemindableInterface {
                      FROM users AS usr, seccion AS sec, periodo AS per
                      WHERE usr.id = sec.profesor_id AND per.id = sec.periodo_id AND sec.materia_id = ".$materia_id));
         return $results;
-    }    
+    }
+
+    public static function marcarTodos($seccion_id,$fecha_id,$asistencia){
+        DB::statement(DB::raw('CALL p_asis_completa('.$seccion_id.','.$fecha_id.','.$asistencia.');'));
+    }
 }

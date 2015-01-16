@@ -59,8 +59,8 @@ class ProfesorController extends BaseController {
             ->with('tipo_error', 'success');
     }
 
-    public function asistenciasTodos($id,$fecha,$asistencia){
-        return $asistencia;
+    public function asistenciasTodos($seccion_id,$fecha,$asistencia){
+        Seccion::marcarTodos($seccion_id,$fecha,$asistencia);
 
         return Redirect::route('profesor.asistencias',array(Input::get('seccion_id'),Input::get('horario_id')))
             ->with('mensaje_error', 'Asistencias almacenadas correctamente')
