@@ -25,12 +25,7 @@
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <p>Marcar todos como:</p>
-                    <select id="marcar_asistencias" class="form-control">
-                        <option VALUE="">Asistieron</option>
-                        <option VALUE="">No asistieron</option>
-                        <option VALUE="">De permiso</option>
-                    </select>
+
                 </div>
             </div>
             <div class="row">
