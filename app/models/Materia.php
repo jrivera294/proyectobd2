@@ -58,4 +58,5 @@ class Materia extends Eloquent implements UserInterface, RemindableInterface {
                     FROM v_listado_alumnos"));
         return $results;
     }
+
 }

@@ -50,12 +50,20 @@ Route::group(array('before' => 'auth|roleDirector', 'prefix' => 'director'), fun
     /* HORARIOS */
     Route::get('materias/{idM}/secciones/{idS}/horario', array('uses'=>'HorariosController@index','as' => 'horarioMateria'));
     Route::post('materias/{idM}/secciones/{idS}/horario/storeHorario', array('uses'=>'HorariosController@store','as' => 'storeHorario'));
+<<<<<<< HEAD
     Route::get('materias/{idM}/secciones/{idS}/horario/{idH}/eliminar', array('uses'=>'HorariosController@eliminarHorario','as' => 'eliminarHorario'));
 
     /* Estadísticas */
     Route::get('/alumnosMateriasPerdidas', array('uses'=>'DirectorController@alumnosMateriasPerdidas','as' => 'materias'));
     Route::get('/porcentajeInasistenciasProfesores', array('uses'=>'DirectorController@porcentajeInasistenciasProfesores','as' => 'porcentajeInasistenciasProfesores'));
     Route::get('/porcentajeInasistenciasAlumnos', array('uses'=>'DirectorController@porcentajeInasistenciasAlumnos','as' => 'porcentajeInasistenciasProfesores'));
+=======
+    Route::get('materias/{idM}/secciones/{idS}/horario/{idH}/eliminar', array('uses'=>'HorariosController@eliminarHorario','as' => 'eliminarHorario'));
+    /* Alumnos */
+    Route::get('materias/{idM}/secciones/{idS}/alumnos', array('uses'=>'DirectorController@alumnos_seccion','as' => 'alumnosSeccion'));
+    Route::get('materias/{idM}/secciones/{idS}/alumnos/{idA}/eliminar', array('uses'=>'DirectorController@eliminar_alumnoS','as' => 'eliminarAlumnoS'));
+
+>>>>>>> github/master
 });
 
 /* Páginas autorizadas para cuadlquier usuario */
