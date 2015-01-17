@@ -139,4 +139,33 @@ class DirectorController extends BaseController {
 
             return Redirect::to('director/materias/'.$materias_id.'/secciones/');
        } 
+
+    public function alumnosMateriasPerdidas(){
+        $alumnos = Materia::getAlumnosConMateriasPerdidas();
+
+        return View::make('pages/director/estadisticas/alumnosMatPer')
+            ->with('alumnos',$alumnos);
+    }
+
+    public function porcentajeInasistenciasProfesores(){
+        $profesores = Carrera::getProfesoresByCarrera(Carrera::getCarreraByDirector(Auth::user()->id)->id);
+
+        foreach($profesores as $profesor){
+            $profesor->porcentaje = User::porcentajeInasistencias($profesor->id);
+        }
+
+        return View::make('pages/director/estadisticas/porcentajeInaProf')
+            ->with('profesores',$profesores);
+    }
+
+    public function porcentajeInasistenciasAlumnos(){
+        $alumnos = Carrera::getAlumnosByCarrera(Carrera::getCarreraByDirector(Auth::user()->id)->id);
+
+        foreach($alumnos as $alumno){
+            $alumno->porcentaje = User::porcentajeInasistencias($alumno->id);
+        }
+
+        return View::make('pages/director/estadisticas/porcentajeInaAlu')
+            ->with('alumnos',$alumnos);
+    }
 }

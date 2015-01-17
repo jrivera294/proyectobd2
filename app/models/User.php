@@ -55,4 +55,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         }
     }
 
+    public static function porcentajeInasistencias($id){
+        $results = DB::select(
+            DB::raw("SELECT f_ina_total(".$id.")"));
+        return $results;
+    }
+
 }

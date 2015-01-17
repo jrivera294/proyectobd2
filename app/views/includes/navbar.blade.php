@@ -34,6 +34,14 @@
                 <li class="{{$path === 'director/alertas' ? 'active' : '';}}">
                     <a href="{{URL::to('director/alertas')}}">Alertas</a>
                 </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Estadísticas <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="{{URL::to('director/alumnosMateriasPerdidas')}}">Alumnos con materias perdidas</a></li>
+                      <li><a href="{{URL::to('director/porcentajeInasistenciasProfesores')}}">Porcentaje de inasistencias profesores</a></li>
+                      <li><a href="{{URL::to('director/porcentajeInasistenciasAlumnos')}}">Porcentaje de inasistencias alumnos</a></li>
+                    </ul>
+                </li>
                 @endif
             </ul>
             <ul class="nav navbar-nav navbar-right">
