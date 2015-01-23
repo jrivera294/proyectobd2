@@ -31,10 +31,13 @@ Route::group(array('before' => 'auth|roleProfesor', 'prefix' => 'profesor'), fun
 /* Páginas autorizadas para usuarios con rol Director */
 Route::group(array('before' => 'auth|roleDirector', 'prefix' => 'director'), function()
 {
+    /*Rutas de Yanir*/
     Route::get('/directorHome', array('uses'=>'DirectorController@index','as' => 'directorHome'));
     Route::get('/materias', array('uses'=>'MateriasController@index','as' => 'materias'));
     Route::get('/materias/{id}/seleccionProfesores', array('uses'=>'DirectorController@seleccion_de_profesor','as' => 'seleccionarProfesor'));
     Route::post('/profesorSeleccionado', array('uses'=>'DirectorController@asignar_profesor','as' => 'asignar_profesor'));
+    Route::get('/materias/{id}/seleccionAlumnos', array('uses'=>'DirectorController@seleccionar_alumnos','as' => 'seleccionar_alumnos'));
+    Route::post('/alumnoSeleccionado', array('uses'=>'DirectorController@asignar_alumnos','as' => 'asignar_alumnos'));
     /*Asistencias*/
     Route::get('/asistencias/{fecha?}', array('uses'=>'DirectorController@asistencias','as' => 'director.asistencias'));
     Route::post('/asistenciasPost', array('uses'=>'DirectorController@asistenciasPost','as' => 'asistenciasPostDir'));

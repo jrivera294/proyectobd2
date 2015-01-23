@@ -26,7 +26,7 @@ class DirectorController extends BaseController {
             // Obtener los campos ingresados en la vista
             $data = Input::all();
 
-            if ($data->isValid($data,false)){
+            if ($seccion->isValid($data,false)){
 
                 // Si la data es valida se la asignamos al usuario
                 $seccion->fill($data);
@@ -139,4 +139,26 @@ class DirectorController extends BaseController {
 
             return Redirect::to('director/materias/'.$materias_id.'/secciones/');
        } 
+       
+       public function seleccionar_alumnos($seccion){
+           
+           $alumnos = User::getAlumnos();
+           return View::make('pages/director/materias/tablaAlumnos')->with('alumnos',$alumnos)->with('id',$seccion);
+           
+       }
+       
+        public function  asignar_alumnos ()
+        {
+
+            // Obtener los campos ingresados en la vista
+            $data = Input::all();
+           // return $data ; 
+            
+            foreach ($data['alumno_id'] as $datos)
+            {    
+               User::LuilloAlumnos($datos, $data['seccion']);
+            }
+        }
+       
+       
 }
