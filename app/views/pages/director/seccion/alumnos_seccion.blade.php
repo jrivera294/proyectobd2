@@ -31,7 +31,7 @@
 <div class="row">
     <div class="col-md-7"></div>
     <div class="col-md-2">
-        <a href="{{URL::to('director/materias/'.$materia->id.'/seleccionProfesores')}}" class="btn btn-success btn-xs btn-block" role="button">
+        <a href="{{URL::to('director/materias/'.$materia->id.'/secciones/'.$secciones->id.'/seleccionAlumnos')}}" class="btn btn-success btn-xs btn-block" role="button">
            Ingresar alumnos
         </a>
     </div>

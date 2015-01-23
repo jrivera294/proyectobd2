@@ -186,7 +186,7 @@ class DirectorController extends BaseController {
        }
        
          
-       public function seleccionar_alumnos($seccion){
+       public function seleccionar_alumnos($materia,$seccion){
            
            $alumnos = User::getAlumnos();
            return View::make('pages/director/materias/tablaAlumnos')->with('alumnos',$alumnos)->with('id',$seccion);
@@ -204,6 +204,9 @@ class DirectorController extends BaseController {
             {    
                User::LuilloAlumnos($datos, $data['seccion']);
             }
+            $seccion = Seccion::find($data['seccion']);
+            
+            return Redirect::to('director/materias/'.$seccion->materia_id.'/secciones/'.$data['seccion'].'/alumnos');
         }
        
 
