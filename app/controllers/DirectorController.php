@@ -184,5 +184,27 @@ class DirectorController extends BaseController {
 
             return Redirect::to('director/materias/'.$materias_id.'/secciones/'.$S_id.'/alumnos');
        }
+       
+         
+       public function seleccionar_alumnos($seccion){
+           
+           $alumnos = User::getAlumnos();
+           return View::make('pages/director/materias/tablaAlumnos')->with('alumnos',$alumnos)->with('id',$seccion);
+           
+       }
+       
+        public function  asignar_alumnos ()
+        {
+
+            // Obtener los campos ingresados en la vista
+            $data = Input::all();
+           // return $data ; 
+            
+            foreach ($data['alumno_id'] as $datos)
+            {    
+               User::LuilloAlumnos($datos, $data['seccion']);
+            }
+        }
+       
 
 }

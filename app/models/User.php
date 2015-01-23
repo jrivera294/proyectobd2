@@ -61,4 +61,30 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         return $results;
     }
 
+    
+    public static function getAlumnos(){
+        
+        $results = DB::select(
+            DB::raw("select id,nombre,apellido,cedula 
+                     from users
+                     where  users.role = 1 "));
+        
+        return $results;
+        
+    }
+    
+    
+    public static function LuilloAlumnos($alumno, $seccion){
+        
+        DB::insert(
+            DB::raw(" INSERT INTO alumno_cursa_materia (alumno_id,seccion_id)
+                      VALUES (".$alumno.", ".$seccion.") "));
+        
+          
+    }
+    
+    
+    
+    
+    
 }
