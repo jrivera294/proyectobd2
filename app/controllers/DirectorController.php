@@ -139,26 +139,50 @@ class DirectorController extends BaseController {
 
             return Redirect::to('director/materias/'.$materias_id.'/secciones/');
        } 
-       
-       public function seleccionar_alumnos($seccion){
-           
-           $alumnos = User::getAlumnos();
-           return View::make('pages/director/materias/tablaAlumnos')->with('alumnos',$alumnos)->with('id',$seccion);
-           
-       }
-       
-        public function  asignar_alumnos ()
-        {
 
-            // Obtener los campos ingresados en la vista
-            $data = Input::all();
-           // return $data ; 
-            
-            foreach ($data['alumno_id'] as $datos)
-            {    
-               User::LuilloAlumnos($datos, $data['seccion']);
-            }
+
+    public function alumnosMateriasPerdidas(){
+        $alumnos = Materia::getAlumnosConMateriasPerdidas();
+
+        return View::make('pages/director/estadisticas/alumnosMatPer')
+            ->with('alumnos',$alumnos);
+    }
+
+    public function porcentajeInasistenciasProfesores(){
+        $profesores = Carrera::getProfesoresByCarrera(Carrera::getCarreraByDirector(Auth::user()->id)->id);
+
+        foreach($profesores as $profesor){
+            $profesor->porcentaje = User::porcentajeInasistencias($profesor->id);
         }
-       
-       
+
+        return View::make('pages/director/estadisticas/porcentajeInaProf')
+            ->with('profesores',$profesores);
+    }
+
+    public function porcentajeInasistenciasAlumnos(){
+        $alumnos = Carrera::getAlumnosByCarrera(Carrera::getCarreraByDirector(Auth::user()->id)->id);
+
+        foreach($alumnos as $alumno){
+            $alumno->porcentaje = User::porcentajeInasistencias($alumno->id);
+        }
+
+        return View::make('pages/director/estadisticas/porcentajeInaAlu')
+            ->with('alumnos',$alumnos);
+    }
+
+       public function alumnos_seccion($materia_id,$seccion_id){
+           $seccion = Seccion::find($seccion_id);
+           $alumnos = $seccion->getAlumnos($seccion_id);
+           $materia = Materia::find($materia_id);
+           return View::make('pages/director/seccion/alumnos_seccion')
+                   ->with('alumnos',$alumnos)
+                   ->with('materia',$materia)
+                   ->with('secciones',$seccion);
+       }
+       public function eliminar_alumnoS($materias_id,$S_id,$alumno_id){
+            Seccion::deleteAlumnos($S_id,$alumno_id);
+
+            return Redirect::to('director/materias/'.$materias_id.'/secciones/'.$S_id.'/alumnos');
+       }
+
 }

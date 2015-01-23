@@ -55,4 +55,25 @@ class Carrera extends Eloquent implements UserInterface, RemindableInterface {
                 WHERE materia.carrera_id = ".$carrera_id));
         return $results;
     }
+
+    public static function getAlumnosByCarrera($carrera_id){
+        $results = DB::select(
+            DB::raw("SELECT users.id, users.cedula, users.nombre, users.apellido
+                FROM materia
+                    LEFT JOIN seccion ON seccion.materia_id = materia.id
+                    LEFT JOIN alumno_cursa_materia ON alumno_cursa_materia.seccion_id = seccion.id
+                    LEFT JOIN users ON users.id = alumno_cursa_materia.alumno_id
+                WHERE materia.carrera_id =".$carrera_id));
+        return $results;
+    }
+
+    public static function getProfesoresByCarrera($carrera_id){
+        $results = DB::select(
+            DB::raw("SELECT users.id, users.cedula, users.nombre, users.apellido
+                FROM materia
+                    LEFT JOIN seccion ON seccion.materia_id = materia.id
+                    LEFT JOIN users ON users.id = seccion.profesor_id
+                WHERE materia.carrera_id =".$carrera_id));
+        return $results;
+    }
 }

@@ -13,6 +13,7 @@
                     <th>Nombre y Apellido</th>
                     <th>Periodo</th>
                     <th>Horarios</th>
+                    <th>Alumnos</th>
                 </tr>
             </thead>
             <tbody>
@@ -24,6 +25,10 @@
                     <td class="center">
                         <a href="{{URL::to('director/materias/'.$materia->id.'/secciones/'.$secciones->id.'/horario')}}" class="btn btn-primary btn-xs btn-block" role="button">
                         <span class="glyphicon glyphicon-list-alt"></span>
+                    </td>
+                    <td class="center">
+                        <a href="{{URL::to('director/materias/'.$materia->id.'/secciones/'.$secciones->id.'/alumnos')}}" class="btn btn-primary btn-xs btn-block" role="button">
+                        <span class="glyphicon glyphicon-user"></span>
                     </td>
                     <td class="center">
                         <a href="{{URL::to('director/materias/'.$materia->id.'/secciones/'.$secciones->id.'/eliminar')}}" class="btn btn-danger btn-xs btn-block" role="button">

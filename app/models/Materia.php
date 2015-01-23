@@ -52,4 +52,11 @@ class Materia extends Eloquent implements UserInterface, RemindableInterface {
         return $results;
     }
     
+    public static function getAlumnosConMateriasPerdidas(){
+        $results = DB::select(
+            DB::raw("SELECT *
+                    FROM v_listado_alumnos"));
+        return $results;
+    }
+
 }

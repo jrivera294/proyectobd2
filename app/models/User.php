@@ -55,26 +55,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         }
     }
 
-    public static function getAlumnos(){
-        
+    public static function porcentajeInasistencias($id){
         $results = DB::select(
-            DB::raw("select id,nombre,apellido,cedula 
-                     from users
-                     where  users.role = 1 "));
-        
+            DB::raw("SELECT f_ina_total(".$id.")"));
         return $results;
-        
     }
-    
-    
-    public static function LuilloAlumnos($alumno, $seccion){
-        
-        DB::insert(
-            DB::raw(" INSERT INTO alumno_cursa_materia (alumno_id,seccion_id)
-                      VALUES (".$alumno.", ".$seccion.") "));
-        
-          
-    }
-    
-    
+
 }

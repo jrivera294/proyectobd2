@@ -99,4 +99,22 @@ class Seccion extends Eloquent implements UserInterface, RemindableInterface {
     public static function marcarTodos($seccion_id,$fecha_id,$asistencia){
         DB::statement(DB::raw('CALL p_asis_completa('.$seccion_id.','.$fecha_id.','.$asistencia.');'));
     }
+
+    public static function getAlumnos($seccion_id){
+        $results = DB::select(
+                DB::raw("SELECT usr.id, usr.nombre, usr.apellido
+                               FROM users AS usr, alumno_cursa_materia
+                               WHERE alumno_cursa_materia.alumno_id = usr.id AND
+                                     alumno_cursa_materia.seccion_id = " .$seccion_id ));
+        return $results;
+    }
+
+    public static function deleteAlumnos($seccion_id,$alumno_id){
+        $results = DB::select(
+                DB::raw("DELETE
+                         FROM alumno_cursa_materia
+                         WHERE alumno_cursa_materia.seccion_id =  " .$seccion_id. " AND
+                               alumno_cursa_materia.alumno_id = " .$alumno_id));
+        return $results;
+    }
 }
