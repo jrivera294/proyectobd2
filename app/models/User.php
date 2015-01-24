@@ -55,17 +55,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         }
     }
 
-    public static function porcentajeInasistencias($id){
-        $results = DB::select(
-            DB::raw("SELECT f_ina_total(".$id.")"));
-        return $results;
-    }
-
-    
     public static function getAlumnos($seccion){
-        
+
         $results = DB::select(
-            DB::raw("SELECT DISTINCT id 
+            DB::raw("SELECT DISTINCT id
                      FROM users, alumno_cursa_materia
                      WHERE users.id NOT IN(SELECT DISTINCT id
 					  FROM users, alumno_cursa_materia
@@ -73,23 +66,27 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 						    alumno_cursa_materia.alumno_id = users.id AND
 							users.role = 1)
        AND users.role = 1;"));
-        
+
         return $results;
-        
+
     }
-    
-    
-    public static function agregar_Alumnos($alumno, $seccion){
-        
+
+
+    public static function LuilloAlumnos($alumno, $seccion){
+
         DB::insert(
             DB::raw(" INSERT INTO alumno_cursa_materia (alumno_id,seccion_id)
                       VALUES (".$alumno.", ".$seccion.") "));
-        
-          
+
+
     }
-    
-    
-    
-    
-    
+
+    public static function porcentajeInasistencias($id){
+        $results = DB::select(
+            DB::raw("SELECT f_ina_total(".$id.") as porcentaje"));
+        return $results;
+    }
+
+
+
 }

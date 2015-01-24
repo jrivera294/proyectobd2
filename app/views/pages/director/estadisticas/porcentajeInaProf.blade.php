@@ -31,7 +31,7 @@
                             <td>{{$profesor->cedula}}</td>
                             <td>{{$profesor->nombre}}</td>
                             <td>{{$profesor->apellido}}</td>
-                            <td>{{$profesor->porcentaje}}</td>
+                            <td>{{$profesor->porcentaje*100}}</td>
                         </tr>
                         @endforeach
                         @endif

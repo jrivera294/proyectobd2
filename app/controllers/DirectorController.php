@@ -152,7 +152,12 @@ class DirectorController extends BaseController {
         $profesores = Carrera::getProfesoresByCarrera(Carrera::getCarreraByDirector(Auth::user()->id)->id);
 
         foreach($profesores as $profesor){
-            $profesor->porcentaje = User::porcentajeInasistencias($profesor->id);
+            $porcentaje = User::porcentajeInasistencias($profesor->id);
+            if($porcentaje == null){
+                $profesor->porcentaje = "Sin datos";
+            }else{
+                $profesor->porcentaje = $porcentaje[0]->porcentaje;
+            }
         }
 
         return View::make('pages/director/estadisticas/porcentajeInaProf')
@@ -163,8 +168,14 @@ class DirectorController extends BaseController {
         $alumnos = Carrera::getAlumnosByCarrera(Carrera::getCarreraByDirector(Auth::user()->id)->id);
 
         foreach($alumnos as $alumno){
-            $alumno->porcentaje = User::porcentajeInasistencias($alumno->id);
+            $porcentaje = User::porcentajeInasistencias($alumno->id);
+            if(is_null($porcentaje)){
+                $alumno->porcentaje = "Sin datos";
+            }else{
+                $alumno->porcentaje = $porcentaje[0]->porcentaje;
+            }
         }
+
 
         return View::make('pages/director/estadisticas/porcentajeInaAlu')
             ->with('alumnos',$alumnos);
@@ -184,30 +195,30 @@ class DirectorController extends BaseController {
 
             return Redirect::to('director/materias/'.$materias_id.'/secciones/'.$S_id.'/alumnos');
        }
-       
-         
+
+
        public function seleccionar_alumnos($materia,$seccion){
-           
+
            $alumnos = User::getAlumnos($seccion);
            return View::make('pages/director/materias/tablaAlumnos')->with('alumnos',$alumnos)->with('id',$seccion);
-           
+
        }
-       
+
         public function  asignar_alumnos ()
         {
 
             // Obtener los campos ingresados en la vista
             $data = Input::all();
-           // return $data ; 
-            
+           // return $data ;
+
             foreach ($data['alumno_id'] as $datos)
             {    
                User::agregar_Alumnos($datos, $data['seccion']);
             }
             $seccion = Seccion::find($data['seccion']);
-            
+
             return Redirect::to('director/materias/'.$seccion->materia_id.'/secciones/'.$data['seccion'].'/alumnos');
         }
-       
+
 
 }
