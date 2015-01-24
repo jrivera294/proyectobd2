@@ -152,7 +152,12 @@ class DirectorController extends BaseController {
         $profesores = Carrera::getProfesoresByCarrera(Carrera::getCarreraByDirector(Auth::user()->id)->id);
 
         foreach($profesores as $profesor){
-            $profesor->porcentaje = User::porcentajeInasistencias($profesor->id);
+            $porcentaje = User::porcentajeInasistencias($profesor->id);
+            if($porcentaje == null){
+                $profesor->porcentaje = "Sin datos";
+            }else{
+                $profesor->porcentaje = $porcentaje[0]->porcentaje;
+            }
         }
 
         return View::make('pages/director/estadisticas/porcentajeInaProf')
@@ -163,8 +168,14 @@ class DirectorController extends BaseController {
         $alumnos = Carrera::getAlumnosByCarrera(Carrera::getCarreraByDirector(Auth::user()->id)->id);
 
         foreach($alumnos as $alumno){
-            $alumno->porcentaje = User::porcentajeInasistencias($alumno->id);
+            $porcentaje = User::porcentajeInasistencias($alumno->id);
+            if(is_null($porcentaje)){
+                $alumno->porcentaje = "Sin datos";
+            }else{
+                $alumno->porcentaje = $porcentaje[0]->porcentaje;
+            }
         }
+
 
         return View::make('pages/director/estadisticas/porcentajeInaAlu')
             ->with('alumnos',$alumnos);

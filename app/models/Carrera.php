@@ -63,7 +63,8 @@ class Carrera extends Eloquent implements UserInterface, RemindableInterface {
                     LEFT JOIN seccion ON seccion.materia_id = materia.id
                     LEFT JOIN alumno_cursa_materia ON alumno_cursa_materia.seccion_id = seccion.id
                     LEFT JOIN users ON users.id = alumno_cursa_materia.alumno_id
-                WHERE materia.carrera_id =".$carrera_id));
+                WHERE materia.carrera_id =".$carrera_id."
+                AND users.id IS NOT NULL"));
         return $results;
     }
 
@@ -73,7 +74,8 @@ class Carrera extends Eloquent implements UserInterface, RemindableInterface {
                 FROM materia
                     LEFT JOIN seccion ON seccion.materia_id = materia.id
                     LEFT JOIN users ON users.id = seccion.profesor_id
-                WHERE materia.carrera_id =".$carrera_id));
+                WHERE materia.carrera_id =".$carrera_id."
+                AND users.id IS NOT NULL"));
         return $results;
     }
 }

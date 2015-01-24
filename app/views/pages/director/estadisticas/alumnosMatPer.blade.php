@@ -24,7 +24,7 @@
                             <th>Nombre</th>
                             <th>Apellido</th>
                             <th>Materia</th>
-                            <th>Porcentaje asistencia</th>
+                            <th>Porcentaje inasistencias</th>
                         </tr>
                         @if(!is_null($alumnos))
                         @foreach ($alumnos as $alumno)
@@ -33,7 +33,7 @@
                             <td>{{$alumno->nombre}}</td>
                             <td>{{$alumno->apellido}}</td>
                             <td>{{$alumno->materia}}</td>
-                            <td>{{$alumno->porcentaje}}</td>
+                            <td>{{$alumno->porcentaje*100}}</td>
                         </tr>
                         @endforeach
                         @endif
