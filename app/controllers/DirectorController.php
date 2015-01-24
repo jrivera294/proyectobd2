@@ -202,7 +202,7 @@ class DirectorController extends BaseController {
             
             foreach ($data['alumno_id'] as $datos)
             {    
-               User::LuilloAlumnos($datos, $data['seccion']);
+               User::agregar_Alumnos($datos, $data['seccion']);
             }
             $seccion = Seccion::find($data['seccion']);
             

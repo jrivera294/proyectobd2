@@ -79,7 +79,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     }
     
     
-    public static function LuilloAlumnos($alumno, $seccion){
+    public static function agregar_Alumnos($alumno, $seccion){
         
         DB::insert(
             DB::raw(" INSERT INTO alumno_cursa_materia (alumno_id,seccion_id)
