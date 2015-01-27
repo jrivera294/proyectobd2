@@ -58,7 +58,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     public static function getAlumnos($seccion){
 
         $results = DB::select(
-            DB::raw("SELECT DISTINCT id
+            DB::raw("SELECT DISTINCT id, nombre, apellido, cedula
                      FROM users, alumno_cursa_materia
                      WHERE users.id NOT IN(SELECT DISTINCT id
 					  FROM users, alumno_cursa_materia
