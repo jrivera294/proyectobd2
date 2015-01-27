@@ -52,7 +52,7 @@ class AuthController extends BaseController {
             $user->save();
 
             // Vamos a la página de login
-            return Redirect::to('login')
+            return Redirect::to('/')
                         ->with('mensaje_error', 'Registro completado exitosamente, ahora puedes iniciar sesión.')
                         ->with('tipo_error', 'success');
         }else{
@@ -66,7 +66,7 @@ class AuthController extends BaseController {
     public function logOut()
     {
         Auth::logout();
-        return Redirect::to('login')
+        return Redirect::to('/')
                     ->with('mensaje_error', 'Tu sesión ha sido cerrada correctamente.')
                     ->with('tipo_error', 'success');
     }
