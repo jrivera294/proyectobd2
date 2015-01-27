@@ -17,7 +17,7 @@ class DirectorController extends BaseController {
         return View::make('pages/director/materias/tablaProfesores')->with('profesores',$profesores)->with('id',$id)->with('periodo',$periodo);
 
     }
-        
+
     public function  asignar_profesor ()
     {
 
@@ -127,18 +127,18 @@ class DirectorController extends BaseController {
     }
 
          public function secciones($materia_id) {
-            $seccion = Seccion::getSeccionesMateria($materia_id); 
+            $seccion = Seccion::getSeccionesMateria($materia_id);
             $materia = Materia::find($materia_id);
             return View::make('pages/director/seccion/secciones_materia')->with('seccion',$seccion)->with('materia',$materia);
          }
-            
+
        public function eliminarSeccion($materias_id,$id){
             $seccion = Seccion::find($id);
 
             $seccion->delete();
 
             return Redirect::to('director/materias/'.$materias_id.'/secciones/');
-       } 
+       }
 
 
     public function alumnosMateriasPerdidas(){
@@ -213,7 +213,7 @@ class DirectorController extends BaseController {
 
             foreach ($data['alumno_id'] as $datos)
             {
-               User::LuilloAlumnos($datos, $data['seccion']);
+               User::agregar_Alumnos($datos, $data['seccion']);
             }
             $seccion = Seccion::find($data['seccion']);
 
