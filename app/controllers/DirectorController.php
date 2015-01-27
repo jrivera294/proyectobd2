@@ -13,7 +13,6 @@ class DirectorController extends BaseController {
         $profesores = User::where('role', '=', 2)->get();;
 
         $periodo = Periodo::lists('Fecha_ini','id');
-
         return View::make('pages/director/materias/tablaProfesores')->with('profesores',$profesores)->with('id',$id)->with('periodo',$periodo);
 
     }
@@ -25,7 +24,7 @@ class DirectorController extends BaseController {
 
             // Obtener los campos ingresados en la vista
             $data = Input::all();
-
+             
             if ($seccion->isValid($data,false)){
 
                 // Si la data es valida se la asignamos al usuario
@@ -35,7 +34,7 @@ class DirectorController extends BaseController {
                 $seccion->save();
 
                 // Vamos a la página de login
-                return Redirect::to('secciones_materias')
+                return Redirect::to('director/materias')
                             ->with('mensaje_error', 'Seccion creada exitosamente.')
                             ->with('tipo_error', 'success');
             }else{
