@@ -28,7 +28,10 @@
                 @endforeach
                 <tr>
                     <td>Nuevo</td>
-                    <td>{{ Form::text('fecha_hora', null, array('class' => 'form-control')) }}</td>
+                    <td>
+                        {{ Form::input('date', 'fecha_hora', null, ['class' => 'form-control', 'placeholder' => 'Date']) }}
+                        {{ Form::text('hora', null, array('class' => 'form-control','placeholder' => '15:00:00')) }}
+                    </td>
                     <td>{{ Form::button('Guardar', array('type' => 'submit', 'class' => 'btn btn-success btn-block', 'id' => 'boton_guardar')) }}</td>
                 </tr>
             </tbody>

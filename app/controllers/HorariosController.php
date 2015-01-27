@@ -18,6 +18,11 @@ class HorariosController extends BaseController {
         $data = Input::all();
         $seccion = Seccion::find(Input::get('seccion_id'));
         $materias_id = $seccion->materia_id;
+        $data = array(
+            'seccion_id' => $data['seccion_id'], 
+            'fecha_hora' => $data['fecha_hora'].' '.$data['hora']
+        );
+        //return $data['fecha_hora'];
         if ($horario->isValid($data,false)){
             // Si la data es valida se la asignamos al Horario
             $horario->fill($data);
