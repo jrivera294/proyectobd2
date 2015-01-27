@@ -10,9 +10,9 @@
                 
                 {{ Form::open(array('route' => 'asignar_profesor', 'method' => 'POST', 'id' => 'laravel_form'), array('role' => 'form')) }}
                 
-                       {{ Form::select('Periodo', $periodo )}} 
+                       {{ Form::select('periodo_id', $periodo )}} 
                        
-                       {{ Form::hidden('materia', $id) }}
+                       {{ Form::hidden('materia_id', $id) }}
                     
                     <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                        <thead>
